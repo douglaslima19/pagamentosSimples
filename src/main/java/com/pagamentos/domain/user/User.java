@@ -1,10 +1,8 @@
 package com.pagamentos.domain.user;
 
+import com.pagamentos.dtos.UserDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GeneratorType;
 
 import java.math.BigDecimal;
@@ -14,6 +12,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of="id")
 public class User {
 
@@ -30,4 +29,16 @@ public class User {
     private BigDecimal saldo;
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public  User(UserDTO novoUsurious){
+        this.firstName = novoUsurious.firstName();
+        this.lastName = novoUsurious.lastName();
+        this.documento = novoUsurious.documento();
+        this.saldo = novoUsurious.saldo();
+        this.userType = novoUsurious.userType();
+        this.senha = novoUsurious.senha();
+        this.email = novoUsurious.email();
+    }
+
+
 }
