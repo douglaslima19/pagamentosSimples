@@ -15,13 +15,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void validaTransicao(User sender, BigDecimal saldo) throws Exception{
+    public void validaTransicao(User sender, User receiver, BigDecimal saldo) throws Exception{
         if(sender.getUserType() == UserType.MERCHANT){
             throw new Exception("Usuários lojistas não podem fazer transições!");
         }
 
         if(sender.getSaldo().compareTo(saldo) < 0){
             throw new Exception("Usuário sem saldo!!");
+        }
+        if(sender.getId() == receiver.getId()){
+            throw  new Exception("Você não pode transferir para você mesmo!!");
         }
     }
     public User findUserById(Long id) throws Exception{
