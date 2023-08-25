@@ -29,13 +29,14 @@ public class TransactionService {
     private NotificacaoService notificacaoService;
 
 
+    @Autowired
     private RestTemplate restTemplate;
 
     public Transaction createTransaction(TransactionDTO transaction) throws  Exception{
         User sender = this.userService.findUserById(transaction.senderId());
         User receiver = this.userService.findUserById(transaction.receiverId());
 
-        userService.validaTransicao(sender, transaction.valor());
+        userService.validaTransicao(sender, receiver, transaction.valor());
 
         if(!this.autorizaTransicao(sender, transaction.valor())){
             throw new Exception("Transação não sutorizada!!");
@@ -59,7 +60,7 @@ public class TransactionService {
         return novatransaction;
     }
     public boolean autorizaTransicao(User sender, BigDecimal valor){
-       ResponseEntity<Map> response =restTemplate.getForEntity("htps://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6", Map.class);
+       ResponseEntity<Map> response =restTemplate.getForEntity("https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6", Map.class);
 
         return response.getStatusCode() == HttpStatus.OK && Objects.equals((String) Objects.requireNonNull(response.getBody()).get("message"), "Autorizado");
     }
