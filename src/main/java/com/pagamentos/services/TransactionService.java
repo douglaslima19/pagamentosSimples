@@ -39,7 +39,7 @@ public class TransactionService {
         userService.validaTransicao(sender, receiver, transaction.valor());
 
         if(!this.autorizaTransicao(sender, transaction.valor())){
-            throw new Exception("Transação não sutorizada!!");
+            throw new Exception("Transação não autorizada!!");
         }
         Transaction novatransaction = new Transaction();
         novatransaction.setValor(transaction.valor());
