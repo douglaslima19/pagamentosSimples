@@ -12,7 +12,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity entradaDuplicada(DataIntegrityViolationException exception){
-        ExceptionDTO exceptionDTO =new ExceptionDTO("Usuário já Cadastrado!!!", "400");
+        ExceptionDTO exceptionDTO =new ExceptionDTO("Usuario ja Cadastrado!!!", "400");
         return ResponseEntity.badRequest().body(exceptionDTO);
     }
     @ExceptionHandler(EntityNotFoundException.class)
