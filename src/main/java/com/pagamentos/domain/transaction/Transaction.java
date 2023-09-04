@@ -1,10 +1,9 @@
 package com.pagamentos.domain.transaction;
 
 import com.pagamentos.domain.user.User;
-import com.pagamentos.dtos.TransactionDTO;
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
