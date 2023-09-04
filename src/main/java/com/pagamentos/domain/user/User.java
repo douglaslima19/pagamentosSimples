@@ -1,10 +1,11 @@
 package com.pagamentos.domain.user;
 
 import com.pagamentos.dtos.UserDTO;
-import jakarta.persistence.*;
+
 import lombok.*;
 import org.hibernate.annotations.GeneratorType;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity(name ="users")
